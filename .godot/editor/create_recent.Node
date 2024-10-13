@@ -1,1 +1,10 @@
+Node
+HitShaker
+CollisionShape2D
+Sprite2D
+HitBox
+AudioStreamPlayer
+AudioListener2D
+Node2D
+AudioStreamPlayer2D
 Camera2D

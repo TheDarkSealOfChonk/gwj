@@ -1,89 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://chtpnpktn7pnf"]
+[gd_scene load_steps=3 format=3 uid="uid://chtpnpktn7pnf"]
 
 [ext_resource type="PackedScene" uid="uid://b3totobanahjr" path="res://player/player.tscn" id="1_cps73"]
-[ext_resource type="Texture2D" uid="uid://dwi618jitysyn" path="res://icon.svg" id="1_ls7ds"]
-[ext_resource type="Script" path="res://hitdealer.gd" id="4_5a4qk"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wg3gk"]
-size = Vector2(125, 24)
-
-[sub_resource type="Animation" id="Animation_y8gox"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(400, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_wf7cw"]
-resource_name = "move"
-loop_mode = 2
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(400, -0.25, 0, 0.25, 0, 31, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ctws"]
-_data = {
-"RESET": SubResource("Animation_y8gox"),
-"move": SubResource("Animation_wf7cw")
-}
+[ext_resource type="PackedScene" uid="uid://by3sif1rqere" path="res://target/target.tscn" id="4_ieq0b"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_cps73")]
 
-[node name="HitDealer" type="Area2D" parent="."]
-position = Vector2(400, 1)
-script = ExtResource("4_5a4qk")
-
-[node name="CollisionShape" type="CollisionShape2D" parent="HitDealer"]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_wg3gk")
-
-[node name="Sprite2D" type="Sprite2D" parent="HitDealer"]
-scale = Vector2(1, 0.2)
-texture = ExtResource("1_ls7ds")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HitDealer"]
-libraries = {
-"": SubResource("AnimationLibrary_6ctws")
-}
-autoplay = "move"
-
 [node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="Target" parent="." instance=ExtResource("4_ieq0b")]
+position = Vector2(-24, 0)

@@ -1,3 +1,8 @@
-res://node_2d.tscn
 res://player/player.tscn
+res://player/new_shader.tres
 res://player/hit_nodes.gd
+res://hitshaker.gd
+res://node_2d.tscn
+res://target/target.tscn
+res://target/hit_relay.gd
+res://player/player.gd

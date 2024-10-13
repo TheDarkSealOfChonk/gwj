@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3totobanahjr"]
+[gd_scene load_steps=23 format=3 uid="uid://b3totobanahjr"]
 
 [ext_resource type="Script" path="res://hitbox.gd" id="1_1k7qj"]
-[ext_resource type="Script" path="res://player/hit_nodes.gd" id="2_0v2n8"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_yh1rm"]
+[ext_resource type="Script" path="res://player/hit_relay.gd" id="2_0v2n8"]
 [ext_resource type="Texture2D" uid="uid://fe4s1876kkqu" path="res://ghost/side-sprites.png" id="2_n0mbm"]
 [ext_resource type="Script" path="res://hitshaker.gd" id="4_oeryd"]
+[ext_resource type="Script" path="res://hitdealer.gd" id="6_kfu7e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6nl2"]
 size = Vector2(18, 24)
@@ -35,6 +37,30 @@ region = Rect2(203, 35, 32, 33)
 atlas = ExtResource("2_n0mbm")
 region = Rect2(235, 35, 32, 33)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_43tui"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(75, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02vrr"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(107, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g37i"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(139, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bsux"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(171, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no1jd"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(203, 0, 32, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1s8x"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(235, 0, 32, 34)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_70lbw"]
 animations = [{
 "frames": [{
@@ -59,9 +85,36 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43tui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02vrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g37i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bsux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no1jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1s8x")
+}],
+"loop": true,
+"name": &"scare",
+"speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hl2hw"]
+
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_yh1rm")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)
@@ -76,14 +129,23 @@ shape = SubResource("RectangleShape2D_c2i8e")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_70lbw")
-animation = &"idle"
+animation = &"scare"
 autoplay = "idle"
-frame_progress = 0.964629
 
 [node name="HitShaker" type="Sprite2D" parent="Sprite"]
 script = ExtResource("4_oeryd")
 
 [node name="HitRelay" type="Node" parent="."]
 script = ExtResource("2_0v2n8")
+
+[node name="HitDealer" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("6_kfu7e")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="HitDealer"]
+position = Vector2(-16, 0)
+shape = SubResource("RectangleShape2D_hl2hw")
+disabled = true
 
 [connection signal="hit_landed" from="HitBox" to="HitRelay" method="_on_hit_box_hit_landed"]
