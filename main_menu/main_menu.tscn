@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://byltxs7vpqgrg"]
+
+[ext_resource type="Script" path="res://main_menu/new_run.gd" id="1_1alus"]
+
+[node name="MainMenu" type="Node"]
+
+[node name="NewRun" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.042
+anchor_top = 0.309
+anchor_right = 0.109
+anchor_bottom = 0.358
+offset_left = -0.384003
+offset_top = -0.23201
+offset_right = 0.431992
+offset_bottom = -0.984009
+text = "New Run"
+script = ExtResource("1_1alus")
+
+[connection signal="button_up" from="NewRun" to="NewRun" method="_on_button_up"]

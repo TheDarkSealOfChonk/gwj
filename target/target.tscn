@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://by3sif1rqere"]
 
-[ext_resource type="Script" path="res://hitbox.gd" id="1_w0mwt"]
-[ext_resource type="Script" path="res://hitshaker.gd" id="2_mgowk"]
+[ext_resource type="Script" path="res://attacks/hitbox.gd" id="1_w0mwt"]
+[ext_resource type="Script" path="res://attacks/hitshaker.gd" id="2_mgowk"]
 [ext_resource type="Script" path="res://target/hit_relay.gd" id="3_dio3s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjdxj"]

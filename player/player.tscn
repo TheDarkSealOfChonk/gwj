@@ -1,11 +1,11 @@
 [gd_scene load_steps=23 format=3 uid="uid://b3totobanahjr"]
 
-[ext_resource type="Script" path="res://hitbox.gd" id="1_1k7qj"]
+[ext_resource type="Script" path="res://attacks/hitbox.gd" id="1_1k7qj"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_yh1rm"]
 [ext_resource type="Script" path="res://player/hit_relay.gd" id="2_0v2n8"]
 [ext_resource type="Texture2D" uid="uid://fe4s1876kkqu" path="res://ghost/side-sprites.png" id="2_n0mbm"]
-[ext_resource type="Script" path="res://hitshaker.gd" id="4_oeryd"]
-[ext_resource type="Script" path="res://hitdealer.gd" id="6_kfu7e"]
+[ext_resource type="Script" path="res://attacks/hitshaker.gd" id="4_oeryd"]
+[ext_resource type="Script" path="res://attacks/hitdealer.gd" id="6_kfu7e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6nl2"]
 size = Vector2(18, 24)

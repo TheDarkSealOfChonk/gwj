@@ -3,17 +3,18 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 
-@onready var hitdealer_collision_shape: CollisionShape2D = $HitDealer/CollisionShape
+@onready var hit_dealer: HitDealer = $HitDealer
+@onready var hit_dealer_collision_shape: CollisionShape2D = $HitDealer/CollisionShape
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 var scare_on_cooldown = false
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shake") && !scare_on_cooldown:
-		hitdealer_collision_shape.disabled = false
+		hit_dealer_collision_shape.disabled = false
 		sprite.animation = "scare"
 		scare_on_cooldown = true
-		get_tree().create_timer(0.2).timeout.connect(func(): hitdealer_collision_shape.disabled = true; sprite.animation = "idle")
+		get_tree().create_timer(0.2).timeout.connect(func(): hit_dealer_collision_shape.disabled = true; sprite.animation = "idle")
 		get_tree().create_timer(0.6).timeout.connect(func(): scare_on_cooldown = false)
 	
 	# Get the input direction and handle the movement/deceleration.

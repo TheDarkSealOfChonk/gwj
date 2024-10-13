@@ -6,3 +6,6 @@ res://node_2d.tscn
 res://target/target.tscn
 res://target/hit_relay.gd
 res://player/player.gd
+res://main_menu/new_run.gd
+res://game.tscn
+res://main_menu/main_menu.tscn
