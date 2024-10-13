@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://hitbox.gd" id="1_1k7qj"]
 [ext_resource type="Script" path="res://player/hit_nodes.gd" id="2_0v2n8"]
-[ext_resource type="Texture2D" uid="uid://b6t64vbmb0swd" path="res://ghost/sprite_sheet.png" id="2_k2ran"]
+[ext_resource type="Texture2D" uid="uid://fe4s1876kkqu" path="res://ghost/side-sprites.png" id="2_n0mbm"]
 [ext_resource type="Script" path="res://hitshaker.gd" id="4_oeryd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6nl2"]
@@ -11,53 +11,53 @@ size = Vector2(18, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2i8e"]
 size = Vector2(18, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_57jb8"]
-atlas = ExtResource("2_k2ran")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f51e"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(75, 35, 32, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4gh6k"]
-atlas = ExtResource("2_k2ran")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6en0r"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(107, 35, 32, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cywhn"]
-atlas = ExtResource("2_k2ran")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nmbb"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(139, 35, 32, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2gsom"]
-atlas = ExtResource("2_k2ran")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu30y"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(171, 35, 32, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cun3y"]
-atlas = ExtResource("2_k2ran")
-region = Rect2(128, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_74nuk"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(203, 35, 32, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s506x"]
-atlas = ExtResource("2_k2ran")
-region = Rect2(0, 32, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xvov"]
+atlas = ExtResource("2_n0mbm")
+region = Rect2(235, 35, 32, 33)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_70lbw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_57jb8")
+"texture": SubResource("AtlasTexture_5f51e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4gh6k")
+"texture": SubResource("AtlasTexture_6en0r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cywhn")
+"texture": SubResource("AtlasTexture_4nmbb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2gsom")
+"texture": SubResource("AtlasTexture_cu30y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cun3y")
+"texture": SubResource("AtlasTexture_74nuk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s506x")
+"texture": SubResource("AtlasTexture_5xvov")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -76,7 +76,9 @@ shape = SubResource("RectangleShape2D_c2i8e")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_70lbw")
-autoplay = "default"
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.964629
 
 [node name="HitShaker" type="Sprite2D" parent="Sprite"]
 script = ExtResource("4_oeryd")

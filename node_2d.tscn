@@ -86,4 +86,4 @@ libraries = {
 }
 autoplay = "move"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
