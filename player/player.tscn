@@ -1,0 +1,87 @@
+[gd_scene load_steps=14 format=3 uid="uid://b3totobanahjr"]
+
+[ext_resource type="Script" path="res://hitbox.gd" id="1_1k7qj"]
+[ext_resource type="Script" path="res://player/hit_nodes.gd" id="2_0v2n8"]
+[ext_resource type="Texture2D" uid="uid://b6t64vbmb0swd" path="res://ghost/sprite_sheet.png" id="2_k2ran"]
+[ext_resource type="Script" path="res://hitshaker.gd" id="4_oeryd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6nl2"]
+size = Vector2(18, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2i8e"]
+size = Vector2(18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57jb8"]
+atlas = ExtResource("2_k2ran")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gh6k"]
+atlas = ExtResource("2_k2ran")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cywhn"]
+atlas = ExtResource("2_k2ran")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gsom"]
+atlas = ExtResource("2_k2ran")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cun3y"]
+atlas = ExtResource("2_k2ran")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s506x"]
+atlas = ExtResource("2_k2ran")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_70lbw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57jb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gh6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cywhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gsom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cun3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s506x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_j6nl2")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("1_1k7qj")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_c2i8e")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_70lbw")
+autoplay = "default"
+
+[node name="HitShaker" type="Sprite2D" parent="Sprite"]
+script = ExtResource("4_oeryd")
+
+[node name="HitRelay" type="Node" parent="."]
+script = ExtResource("2_0v2n8")
+
+[connection signal="hit_landed" from="HitBox" to="HitRelay" method="_on_hit_box_hit_landed"]
