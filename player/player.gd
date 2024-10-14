@@ -25,9 +25,8 @@ func _physics_process(delta: float) -> void:
 			da_pig.visible = true
 			get_tree().create_timer(1).timeout.connect(func(): da_pig.visible = false)
 		hit_dealer_collision_shape.disabled = false
-		sprite.animation = "scare"
 		scare_on_cooldown = true
-		get_tree().create_timer(0.2).timeout.connect(func(): hit_dealer_collision_shape.disabled = true; sprite.animation = "idle")
+		get_tree().create_timer(0.2).timeout.connect(func(): hit_dealer_collision_shape.disabled = true)
 		get_tree().create_timer(0.6).timeout.connect(func(): scare_on_cooldown = false)
 		
 		SMALL_SCARE_SOUNDS[randi_range(0, 2)].play()
@@ -37,6 +36,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	
 	if direction:
+		sprite.update_direction_from_rad(Vector2().angle_to_point(direction))
 		velocity = direction * SPEED
 	else:
 		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
