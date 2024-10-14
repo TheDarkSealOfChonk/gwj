@@ -20,10 +20,14 @@ var scare_on_cooldown = false
 func _physics_process(delta: float) -> void:
 	small_scare_hit_dealer.rotation = global_position.angle_to_point(get_global_mouse_position()) + PI
 	
-	if Input.is_action_just_pressed("shake") && !scare_on_cooldown:
+	if Input.is_action_just_pressed("small_scare") && !scare_on_cooldown:
 		if settings_manager.is_oink_mode_enabled():
 			da_pig.visible = true
 			get_tree().create_timer(1).timeout.connect(func(): da_pig.visible = false)
+		
+		sprite.update_direction_from_rad(small_scare_hit_dealer.rotation)
+		sprite.flush_to_animation()
+		
 		small_scare_hit_dealer_collision_shape.disabled = false
 		scare_on_cooldown = true
 		get_tree().create_timer(0.2).timeout.connect(func(): small_scare_hit_dealer_collision_shape.disabled = true)
