@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b3totobanahjr"]
+[gd_scene load_steps=28 format=3 uid="uid://b3totobanahjr"]
 
 [ext_resource type="Script" path="res://attacks/hitbox.gd" id="1_1k7qj"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_yh1rm"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://fe4s1876kkqu" path="res://ghost/side-sprites.png" id="2_n0mbm"]
 [ext_resource type="Script" path="res://attacks/hitshaker.gd" id="4_oeryd"]
 [ext_resource type="Script" path="res://attacks/hitdealer.gd" id="6_kfu7e"]
+[ext_resource type="PackedScene" uid="uid://cxf4uyoe085n7" path="res://oink_mode/da_pig.tscn" id="7_i5r24"]
+[ext_resource type="Texture2D" uid="uid://b0lrjdhyhycid" path="res://player/attack_direction_indicator.png" id="7_o6l13"]
+[ext_resource type="AudioStream" uid="uid://cv075sli5cynk" path="res://player/Ghost_Atk_01_v3.wav" id="8_y5e86"]
+[ext_resource type="AudioStream" uid="uid://dticjw7piq3il" path="res://player/Ghost_Atk_02_v3.wav" id="9_apcff"]
+[ext_resource type="AudioStream" uid="uid://clthjbnlyd5g8" path="res://player/Ghost_Atk_03_v3.wav" id="10_7xnpg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6nl2"]
 size = Vector2(18, 24)
@@ -144,8 +149,31 @@ collision_mask = 2
 script = ExtResource("6_kfu7e")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="HitDealer"]
-position = Vector2(-16, 0)
+position = Vector2(-24, 0)
 shape = SubResource("RectangleShape2D_hl2hw")
 disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="HitDealer"]
+position = Vector2(-16, 0)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("7_o6l13")
+flip_h = true
+
+[node name="SmallScareSounds" type="Node" parent="."]
+
+[node name="Sound01" type="AudioStreamPlayer" parent="SmallScareSounds"]
+stream = ExtResource("8_y5e86")
+
+[node name="Sound02" type="AudioStreamPlayer" parent="SmallScareSounds"]
+stream = ExtResource("9_apcff")
+
+[node name="Sound03" type="AudioStreamPlayer" parent="SmallScareSounds"]
+stream = ExtResource("10_7xnpg")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="DaPig" parent="." instance=ExtResource("7_i5r24")]
+visible = false
 
 [connection signal="hit_landed" from="HitBox" to="HitRelay" method="_on_hit_box_hit_landed"]

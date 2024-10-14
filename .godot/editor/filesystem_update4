@@ -9,3 +9,10 @@ res://player/player.gd
 res://main_menu/new_run.gd
 res://game.tscn
 res://main_menu/main_menu.tscn
+res://oink_mode/oinkmodetoggler.gd
+res://oink_mode/oinkmodemanager.gd
+res://ring/ring.tscn
+res://main.tscn
+res://settings/settings.gd
+res://settings/settingsmanager.gd
+res://oink_mode/da_pig.tscn

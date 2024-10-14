@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxf4uyoe085n7"]
+
+[ext_resource type="Texture2D" uid="uid://bg0adl8mh57fl" path="res://oink_mode/dapig.png" id="1_30mat"]
+
+[node name="DaPig" type="Sprite2D"]
+z_index = 1000
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_30mat")

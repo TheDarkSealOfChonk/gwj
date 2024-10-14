@@ -1,5 +1,9 @@
 extends Button
 
 
+const RING = preload("res://ring/ring.tscn")
+
+
 func _on_button_up() -> void:
-	get_tree().change_scene_to_file("res://game.tscn")
+	$"..".queue_free()
+	$/root/Main.add_child(RING.instantiate())

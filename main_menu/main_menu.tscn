@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://byltxs7vpqgrg"]
+[gd_scene load_steps=3 format=3 uid="uid://byltxs7vpqgrg"]
 
 [ext_resource type="Script" path="res://main_menu/new_run.gd" id="1_1alus"]
+[ext_resource type="Script" path="res://oink_mode/oinkmodetoggler.gd" id="2_dpp1p"]
 
 [node name="MainMenu" type="Node"]
 
@@ -16,5 +17,8 @@ offset_right = 0.431992
 offset_bottom = -0.984009
 text = "New Run"
 script = ExtResource("1_1alus")
+
+[node name="OinkModeToggler" type="Node" parent="."]
+script = ExtResource("2_dpp1p")
 
 [connection signal="button_up" from="NewRun" to="NewRun" method="_on_button_up"]
