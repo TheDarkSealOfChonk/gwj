@@ -13,14 +13,11 @@ func update_direction_from_rad(angle: float):
 
 
 func update_direction(value: int):
-	print(value)
 	direction = value
-	flush_to_animation()
 
 
 func update_walking(value: bool):
 	walking = value
-	flush_to_animation()
 
 
 func flush_to_animation():

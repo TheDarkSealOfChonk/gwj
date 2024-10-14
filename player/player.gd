@@ -36,9 +36,13 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	
 	if direction:
+		sprite.update_walking(true)
 		sprite.update_direction_from_rad(Vector2().angle_to_point(direction))
+		sprite.flush_to_animation()
 		velocity = direction * SPEED
 	else:
+		sprite.update_walking(false)
+		sprite.flush_to_animation()
 		velocity = Vector2(move_toward(velocity.x, 0, SPEED), move_toward(velocity.y, 0, SPEED))
 	
 	move_and_slide()
