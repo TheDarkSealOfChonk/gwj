@@ -9,8 +9,8 @@ const SPEED = 300.0
 	$SmallScareSounds/Sound03,
 ]
 
-@onready var hit_dealer: HitDealer = $HitDealer
-@onready var hit_dealer_collision_shape: CollisionShape2D = $HitDealer/CollisionShape
+@onready var small_scare_hit_dealer: HitDealer = $HitDealer
+@onready var small_scare_hit_dealer_collision_shape: CollisionShape2D = $HitDealer/CollisionShape
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var da_pig: Sprite2D = $DaPig
 @onready var settings_manager: SettingsManager = $/root/Main/SettingsManager
@@ -18,15 +18,15 @@ const SPEED = 300.0
 var scare_on_cooldown = false
 
 func _physics_process(delta: float) -> void:
-	hit_dealer.rotation = global_position.angle_to_point(get_global_mouse_position()) + PI
+	small_scare_hit_dealer.rotation = global_position.angle_to_point(get_global_mouse_position()) + PI
 	
 	if Input.is_action_just_pressed("shake") && !scare_on_cooldown:
 		if settings_manager.is_oink_mode_enabled():
 			da_pig.visible = true
 			get_tree().create_timer(1).timeout.connect(func(): da_pig.visible = false)
-		hit_dealer_collision_shape.disabled = false
+		small_scare_hit_dealer_collision_shape.disabled = false
 		scare_on_cooldown = true
-		get_tree().create_timer(0.2).timeout.connect(func(): hit_dealer_collision_shape.disabled = true)
+		get_tree().create_timer(0.2).timeout.connect(func(): small_scare_hit_dealer_collision_shape.disabled = true)
 		get_tree().create_timer(0.6).timeout.connect(func(): scare_on_cooldown = false)
 		
 		SMALL_SCARE_SOUNDS[randi_range(0, 2)].play()
