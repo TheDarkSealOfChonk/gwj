@@ -1,11 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://chtpnpktn7pnf"]
+[gd_scene load_steps=7 format=3 uid="uid://dmuhwkdcnjf57"]
 
-[ext_resource type="PackedScene" uid="uid://b3totobanahjr" path="res://player/player.tscn" id="1_8cdtu"]
+[ext_resource type="PackedScene" uid="uid://rbemdkcaov3k" path="res://player/player.tscn" id="1_8cdtu"]
 [ext_resource type="PackedScene" uid="uid://by3sif1rqere" path="res://target/target.tscn" id="2_uyae2"]
+[ext_resource type="Shader" path="res://ring/ring.gdshader" id="3_ogddb"]
+[ext_resource type="Texture2D" uid="uid://bg0adl8mh57fl" path="res://oink_mode/dapig.png" id="4_fq7yg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qkbi6"]
+shader = ExtResource("3_ogddb")
+shader_parameter/force = 0.0
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/size = null
+shader_parameter/thikness = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjjgd"]
+shader = ExtResource("3_ogddb")
+shader_parameter/force = 0.01
+shader_parameter/center = null
+shader_parameter/size = 0.525
+shader_parameter/thikness = 0.19
 
 [node name="Game" type="Node2D"]
+position = Vector2(160, 72)
 
 [node name="Player" parent="." instance=ExtResource("1_8cdtu")]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(24, 24)
+zoom = Vector2(1.965, 1.965)
+
 [node name="Target" parent="." instance=ExtResource("2_uyae2")]
-position = Vector2(-24, 0)
+position = Vector2(-40, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qkbi6")
+texture = ExtResource("4_fq7yg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_hjjgd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -48.0
+offset_right = -280.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4

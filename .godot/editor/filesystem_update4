@@ -1,4 +1,4 @@
-res://main.tscn
-res://player/player.tscn
-res://player/sprite.gd
-res://player/player.gd
+res://ring/ring.tscn
+res://ring/ring.gdshader
+res://player/player.gdshader
+res://player/new_shader.tres
