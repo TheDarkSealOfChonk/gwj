@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://by3sif1rqere"]
+[gd_scene load_steps=8 format=3 uid="uid://by3sif1rqere"]
 
 [ext_resource type="Script" path="res://attacks/hitbox.gd" id="1_w0mwt"]
 [ext_resource type="Script" path="res://attacks/hitshaker.gd" id="2_mgowk"]
 [ext_resource type="Script" path="res://target/hit_relay.gd" id="3_dio3s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjdxj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_do08q"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxhxl"]
+size = Vector2(10, 10)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3ku3t"]
 size = Vector2(20, 20)
@@ -16,6 +22,12 @@ script = ExtResource("1_w0mwt")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gjdxj")
+
+[node name="AnimatableBody" type="AnimatableBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_do08q")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="AnimatableBody"]
+shape = SubResource("RectangleShape2D_qxhxl")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_3ku3t")

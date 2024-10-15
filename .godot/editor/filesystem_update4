@@ -1,5 +1,5 @@
 res://main.tscn
-res://player/player.tscn
-res://player/sprite.gd
 res://player/player.gd
+res://player/player.tscn
 res://big_scare_effect/big_scare_effect.tscn
+res://target/target.tscn

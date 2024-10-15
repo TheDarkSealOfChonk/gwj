@@ -1,11 +1,14 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1728923470
+::res://::1728953994
 LICENSE.md::TextFile::-1::1728871063::0::1::::<><>::
-main.tscn::PackedScene::5515261291447180936::1728923470::0::1::::<><>::uid://byltxs7vpqgrg::::res://main_menu/main_menu.tscn<>res://settings/settingsmanager.gd
+main.tscn::PackedScene::5515261291447180936::1728953994::0::1::::<><>::uid://byltxs7vpqgrg::::res://main_menu/main_menu.tscn<>res://settings/settingsmanager.gd
 ::res://attacks/::1728919185
 hitbox.gd::GDScript::-1::1728832097::0::1::::HitBox<>Area2D<>::
 hitdealer.gd::GDScript::-1::1728832097::0::1::::HitDealer<>Area2D<>::
 hitshaker.gd::GDScript::-1::1728837862::0::1::::HitShaker<>Node<>::
+auto_targeter.gd::GDScript::-1::1728954271::0::1::::<>Node<>::
+::res://big_scare_effect/::1728953994
+big_scare_effect.tscn::PackedScene::8356518164813323266::1728953994::0::1::::<><>::
 ::res://main_menu/::1728919288
 main_menu.tscn::PackedScene::4094856778251780464::1728874533::0::1::::<><>::res://main_menu/new_run.gd<>res://oink_mode/oinkmodetoggler.gd
 new_run.gd::GDScript::-1::1728859179::0::1::::<>Button<>::
@@ -14,7 +17,7 @@ new_run.png::CompressedTexture2D::8763542164672090827::1728859028::1728919288::1
 dapig.png::CompressedTexture2D::2859169176045697493::1728861670::1728919289::1::::<><>::
 da_pig.tscn::PackedScene::6399304450903718762::1728874217::0::1::::<><>::uid://bg0adl8mh57fl::::res://oink_mode/dapig.png
 oinkmodetoggler.gd::GDScript::-1::1728861766::0::1::::OinkModeToggler<>Node<>::
-::res://player/::1728923585
+::res://player/::1728954201
 attack_direction_indicator.png::CompressedTexture2D::4164898360445173899::1728866317::1728919289::1::::<><>::
 Ghost_Atk_01_v1.wav::AudioStreamWAV::2584685021178525244::1728866724::1728919289::1::::<><>::
 Ghost_Atk_01_v3.wav::AudioStreamWAV::6300414008038881748::1728867259::1728919289::1::::<><>::
@@ -25,8 +28,9 @@ Ghost_Dmg_01_v1.wav::AudioStreamWAV::4669306481494047620::1728866724::1728919289
 Ghost_Dmg_02_v1.wav::AudioStreamWAV::1492199106695808087::1728866724::1728919289::1::::<><>::
 hit_relay.gd::GDScript::-1::1728837793::0::1::::<>Node<>::
 new_shader.tres::VisualShader::9091559280938479932::1728874057::0::1::::<><>::
-player.gd::GDScript::-1::1728923470::0::1::::<>CharacterBody2D<>::
-player.tscn::PackedScene::4391816187757154287::1728923585::0::1::::<><>::res://attacks/hitbox.gd<>res://player/player.gd<>res://player/hit_relay.gd<>uid://cmvwmwc4mm6hl::::res://player/sprite_sheets/IMG_2407.PNG<>uid://bt3hh7vw82qmn::::res://player/sprite_sheets/IMG_2406.PNG<>res://player/sprite.gd<>res://attacks/hitshaker.gd<>res://attacks/hitdealer.gd<>uid://cxf4uyoe085n7::::res://oink_mode/da_pig.tscn<>uid://b0lrjdhyhycid::::res://player/attack_direction_indicator.png<>uid://cv075sli5cynk::::res://player/Ghost_Atk_01_v3.wav<>uid://dticjw7piq3il::::res://player/Ghost_Atk_02_v3.wav<>uid://clthjbnlyd5g8::::res://player/Ghost_Atk_03_v3.wav
+player.gd::GDScript::-1::1728953945::0::1::::<>RigidBody2D<>::
+player.tscn::PackedScene::4391816187757154287::1728953994::0::1::::<><>::res://attacks/hitbox.gd<>res://player/player.gd<>res://player/hit_relay.gd<>uid://cmvwmwc4mm6hl::::res://player/sprite_sheets/IMG_2407.PNG<>uid://bt3hh7vw82qmn::::res://player/sprite_sheets/IMG_2406.PNG<>res://player/sprite.gd<>res://attacks/hitshaker.gd<>res://attacks/hitdealer.gd<>uid://cxf4uyoe085n7::::res://oink_mode/da_pig.tscn<>uid://b0lrjdhyhycid::::res://player/attack_direction_indicator.png<>uid://cv075sli5cynk::::res://player/Ghost_Atk_01_v3.wav<>uid://dticjw7piq3il::::res://player/Ghost_Atk_02_v3.wav<>uid://clthjbnlyd5g8::::res://player/Ghost_Atk_03_v3.wav<>uid://cf804rn203pgy::::res://player/scare_recharge_particle.png
+scare_recharge_particle.png::CompressedTexture2D::5193480678543433008::1728948550::1728948552::1::::<><>::
 sprite.gd::GDScript::-1::1728923585::0::1::::<>AnimatedSprite2D<>::
 ::res://player/sprite_sheets/::1728919456
 IMG_2406.PNG::CompressedTexture2D::3778250523668945485::1728862356::1728919456::1::::<><>::
@@ -35,6 +39,6 @@ IMG_2407.PNG::CompressedTexture2D::5659817787183050037::1728862366::1728919456::
 ring.tscn::PackedScene::5304321224572042411::1728919185::0::1::::<><>::uid://b3totobanahjr::::res://player/player.tscn<>uid://by3sif1rqere::::res://target/target.tscn
 ::res://settings/::1728860534
 settingsmanager.gd::GDScript::-1::1728860534::0::1::::SettingsManager<>Node<>::
-::res://target/::1728919185
+::res://target/::1728953994
 hit_relay.gd::GDScript::-1::1728837994::0::1::::<>Node<>::
-target.tscn::PackedScene::121466558938712166::1728855095::0::1::::<><>::res://attacks/hitbox.gd<>res://attacks/hitshaker.gd<>res://target/hit_relay.gd
+target.tscn::PackedScene::121466558938712166::1728953994::0::1::::<><>::res://attacks/hitbox.gd<>res://attacks/hitshaker.gd<>res://target/hit_relay.gd
