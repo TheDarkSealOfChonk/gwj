@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://b3totobanahjr"]
+[gd_scene load_steps=73 format=3 uid="uid://b3totobanahjr"]
 
 [ext_resource type="Script" path="res://attacks/hitbox.gd" id="1_1k7qj"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_yh1rm"]
@@ -9,21 +9,25 @@
 [ext_resource type="Script" path="res://attacks/hitshaker.gd" id="4_oeryd"]
 [ext_resource type="Script" path="res://attacks/hitdealer.gd" id="6_kfu7e"]
 [ext_resource type="PackedScene" uid="uid://cxf4uyoe085n7" path="res://oink_mode/da_pig.tscn" id="7_i5r24"]
-[ext_resource type="Texture2D" uid="uid://b0lrjdhyhycid" path="res://player/attack_direction_indicator.png" id="7_o6l13"]
 [ext_resource type="AudioStream" uid="uid://cv075sli5cynk" path="res://player/Ghost_Atk_01_v3.wav" id="8_y5e86"]
 [ext_resource type="AudioStream" uid="uid://dticjw7piq3il" path="res://player/Ghost_Atk_02_v3.wav" id="9_apcff"]
 [ext_resource type="AudioStream" uid="uid://clthjbnlyd5g8" path="res://player/Ghost_Atk_03_v3.wav" id="10_7xnpg"]
+[ext_resource type="Script" path="res://attacks/autotargeter.gd" id="13_d721y"]
 [ext_resource type="Texture2D" uid="uid://cf804rn203pgy" path="res://player/scare_recharge_particle.png" id="13_gnlxp"]
+[ext_resource type="Texture2D" uid="uid://d4ce5v7lpwtyc" path="res://player/small_crosshair.png" id="13_opc0u"]
+[ext_resource type="Texture2D" uid="uid://ti5h4007h5ni" path="res://player/crosshair.png" id="13_scdd2"]
+[ext_resource type="Script" path="res://player/dashing_particles.gd" id="16_s82nh"]
+[ext_resource type="AudioStream" uid="uid://bdmfej30f26yr" path="res://player/crunch.mp3" id="17_dd07j"]
+[ext_resource type="Script" path="res://player/crunch_sound.gd" id="18_mmomh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dwpj8"]
 friction = 0.0
-bounce = 0.25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6nl2"]
-size = Vector2(18, 24)
+size = Vector2(16, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2i8e"]
-size = Vector2(18, 24)
+size = Vector2(16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qly46"]
 atlas = ExtResource("3_r6tpa")
@@ -169,26 +173,6 @@ region = Rect2(128, 32, 32, 32)
 atlas = ExtResource("3_r6tpa")
 region = Rect2(160, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_otpya"]
-atlas = ExtResource("3_j4wr0")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w2rp1"]
-atlas = ExtResource("3_j4wr0")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4v6l"]
-atlas = ExtResource("3_j4wr0")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jsuev"]
-atlas = ExtResource("3_j4wr0")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hpio4"]
-atlas = ExtResource("3_j4wr0")
-region = Rect2(128, 0, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_70lbw"]
 animations = [{
 "frames": [{
@@ -328,29 +312,12 @@ animations = [{
 "loop": true,
 "name": &"move_u",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_otpya")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w2rp1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k4v6l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jsuev")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hpio4")
-}],
-"loop": true,
-"name": &"scare",
-"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hl2hw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1ki2"]
+size = Vector2(32, 48)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fsin2"]
 streams_count = 3
@@ -427,27 +394,115 @@ _data = {
 "move_up": SubResource("Animation_bdgcl")
 }
 
+[sub_resource type="Animation" id="Animation_xmdxd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7md1v"]
+resource_name = "move_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 8), Vector2(0, -16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mvgh8"]
+_data = {
+"RESET": SubResource("Animation_xmdxd"),
+"move_up": SubResource("Animation_7md1v")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86nth"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_opc0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_scdd2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8w1sq"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 16, 1)
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rvtsr"]
+random_pitch = 2.0
+random_volume_offset_db = 5.0
+streams_count = 1
+stream_0/stream = ExtResource("17_dd07j")
+
 [node name="Player" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_dwpj8")
 gravity_scale = 0.0
 can_sleep = false
 lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_yh1rm")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_j6nl2")
 
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("1_1k7qj")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_c2i8e")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_70lbw")
-animation = &"scare"
+animation = &"move_d"
 autoplay = "idle_lr"
 flip_h = true
 script = ExtResource("4_jvh8l")
@@ -468,11 +523,9 @@ position = Vector2(-16, 0)
 shape = SubResource("RectangleShape2D_hl2hw")
 disabled = true
 
-[node name="Sprite" type="Sprite2D" parent="HitDealer"]
-position = Vector2(-16, 0)
-scale = Vector2(0.02, 0.02)
-texture = ExtResource("7_o6l13")
-flip_h = true
+[node name="DashingCollisionShape" type="CollisionShape2D" parent="HitDealer"]
+shape = SubResource("RectangleShape2D_l1ki2")
+disabled = true
 
 [node name="SmallScareSounds" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_fsin2")
@@ -492,9 +545,44 @@ libraries = {
 "": SubResource("AnimationLibrary_ue1s8")
 }
 
-[node name="DashingParticles" type="GPUParticles2D" parent="."]
+[node name="DashRecharge" type="Node2D" parent="."]
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Particles" type="GPUParticles2D" parent="DashRecharge"]
+position = Vector2(0, 8)
+process_material = SubResource("ParticleProcessMaterial_lv7ck")
+texture = ExtResource("13_gnlxp")
+lifetime = 0.1
+randomness = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DashRecharge"]
+libraries = {
+"": SubResource("AnimationLibrary_mvgh8")
+}
+
+[node name="AutoTargeter" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("origin_node")]
+z_index = 1000
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_86nth")
+script = ExtResource("13_d721y")
+origin_node = NodePath("..")
+
+[node name="DashingParticles" type="GPUParticles2D" parent="."]
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_8w1sq")
+lifetime = 5.0
+preprocess = 0.2
+local_coords = true
+trail_enabled = true
+script = ExtResource("16_s82nh")
+
+[node name="CrunchSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_rvtsr")
+volume_db = -10.0
+script = ExtResource("18_mmomh")
+
+[node name="CameraSeparator" type="Node" parent="."]
+
+[node name="Camera" type="Camera2D" parent="CameraSeparator"]
 zoom = Vector2(4, 4)
 
 [node name="DaPig" parent="." instance=ExtResource("7_i5r24")]
@@ -502,3 +590,5 @@ visible = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="hit_landed" from="HitBox" to="HitRelay" method="_on_hit_box_hit_landed"]
+[connection signal="hit_landed" from="HitDealer" to="." method="_on_hit_dealer_hit_landed"]
+[connection signal="hit_landed" from="HitDealer" to="CrunchSound" method="_on_hit_dealer_hit_landed"]

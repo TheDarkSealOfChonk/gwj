@@ -1,4 +1,6 @@
 res://player
+res://fonts
+res://main_menu
 res://big_scare_effect
 res://player/sprite_sheets
 <<<<<<< HEAD
@@ -11,5 +13,4 @@ res://
 >>>>>>> ee4e9d87d21f95b4ae0affaf98dac835b1bad1c4
 res://oink_mode
 res://
-res://main_menu
 >>>>>>> e977efbb147de7dca5748a23ef499da12aceb927

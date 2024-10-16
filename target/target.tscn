@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjdxj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_do08q"]
-bounce = 1.0
+bounce = 0.25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxhxl"]
 size = Vector2(10, 10)
@@ -15,7 +15,7 @@ size = Vector2(10, 10)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3ku3t"]
 size = Vector2(20, 20)
 
-[node name="Target" type="Area2D"]
+[node name="Target" type="Area2D" groups=["targets"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_w0mwt")

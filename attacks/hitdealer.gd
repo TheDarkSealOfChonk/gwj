@@ -2,6 +2,8 @@ extends Area2D
 class_name HitDealer
 
 
+signal hit_landed(hitbox: HitBox, damage: float, hitbox_died: bool)
+
 @export var damage: int = 10
 
 
@@ -11,4 +13,4 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HitBox:
-		(area as HitBox).hit(damage)
+		hit_landed.emit(area as HitBox, damage, (area as HitBox).hit(self, damage))

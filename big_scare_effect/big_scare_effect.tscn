@@ -1,5 +1,23 @@
-[gd_scene format=3 uid="uid://drb7vscea6hos"]
+[gd_scene load_steps=3 format=3 uid="uid://drb7vscea6hos"]
+
+[ext_resource type="Shader" path="res://big_scare_effect/ring.gdshader" id="1_di4ce"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_flfli"]
+shader = ExtResource("1_di4ce")
+shader_parameter/force = 1.0
+shader_parameter/center = Vector2(630, 80)
+shader_parameter/size = 100.0
+shader_parameter/thikness = 10.0
 
 [node name="BigScareEffect" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = 1
+material = SubResource("ShaderMaterial_flfli")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

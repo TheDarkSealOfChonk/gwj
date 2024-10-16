@@ -6,9 +6,8 @@ var walking = false
 
 
 func update_direction_from_rad(angle: float):
+	angle = wrapf(angle, 0.0, TAU)
 	var value = int((angle / TAU) * 4)
-	if value < 0:
-		value = 4 + value
 	update_direction(value)
 
 

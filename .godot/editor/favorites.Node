@@ -2,3 +2,4 @@ Control
 Sprite2D
 CharacterBody2D
 RigidBody2D
+AnimationPlayer

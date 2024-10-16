@@ -9,3 +9,5 @@
 
 [node name="SettingsManager" type="Node" parent="."]
 script = ExtResource("2_30qef")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

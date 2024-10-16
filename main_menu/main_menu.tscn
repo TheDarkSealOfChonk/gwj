@@ -1,24 +1,92 @@
-[gd_scene load_steps=3 format=3 uid="uid://byltxs7vpqgrg"]
+[gd_scene load_steps=12 format=3 uid="uid://byltxs7vpqgrg"]
 
 [ext_resource type="Script" path="res://main_menu/new_run.gd" id="1_1alus"]
+[ext_resource type="Texture2D" uid="uid://dw4ei2q8oqe3d" path="res://main_menu/new_run.png" id="1_u8fww"]
 [ext_resource type="Script" path="res://oink_mode/oinkmodetoggler.gd" id="2_dpp1p"]
+[ext_resource type="Texture2D" uid="uid://djkoc6u34s7g2" path="res://main_menu/background.png" id="2_raleg"]
+[ext_resource type="Texture2D" uid="uid://15pu0tep05b4" path="res://main_menu/high_score_panel.png" id="3_mjyfw"]
+[ext_resource type="FontFile" uid="uid://bnxovhq0a8y32" path="res://fonts/slkscr.ttf" id="4_wf1bt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kjaa"]
+atlas = ExtResource("2_raleg")
+region = Rect2(793.872, 33.2183, 474.655, 326.812)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6pvb5"]
+font = ExtResource("4_wf1bt")
+font_color = Color(0.486275, 0.521569, 0.803922, 1)
+shadow_size = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8aow7"]
+atlas = ExtResource("1_u8fww")
+region = Rect2(0, 0, 66, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khd7k"]
+atlas = ExtResource("1_u8fww")
+region = Rect2(0, 70, 66, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q066x"]
+atlas = ExtResource("1_u8fww")
+region = Rect2(0, 35, 66, 35)
 
 [node name="MainMenu" type="Node"]
-
-[node name="NewRun" type="Button" parent="."]
-anchors_preset = -1
-anchor_left = 0.042
-anchor_top = 0.309
-anchor_right = 0.109
-anchor_bottom = 0.358
-offset_left = -0.384003
-offset_top = -0.23201
-offset_right = 0.431992
-offset_bottom = -0.984009
-text = "New Run"
-script = ExtResource("1_1alus")
 
 [node name="OinkModeToggler" type="Node" parent="."]
 script = ExtResource("2_dpp1p")
 
-[connection signal="button_up" from="NewRun" to="NewRun" method="_on_button_up"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 7.2
+anchor_bottom = 4.05
+offset_right = 288.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_3kjaa")
+
+[node name="HighScorePanel" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.139
+anchor_top = 0.006
+anchor_right = 0.247
+anchor_bottom = 0.052
+offset_left = -0.128021
+offset_top = 0.112
+offset_right = -0.544006
+offset_bottom = 0.304001
+texture = ExtResource("3_mjyfw")
+
+[node name="Text" type="Label" parent="CanvasLayer/HighScorePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.081
+anchor_top = 0.267
+anchor_right = 0.919
+anchor_bottom = 1.0
+offset_left = -0.0439997
+offset_top = -0.0100002
+offset_right = 0.0439987
+offset_bottom = 1.0
+label_settings = SubResource("LabelSettings_6pvb5")
+
+[node name="NewRun" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.003
+anchor_top = 0.006
+anchor_right = 0.061
+anchor_bottom = 0.06
+offset_left = 0.544
+offset_top = 0.112
+offset_right = -0.272003
+offset_bottom = 0.119999
+button_mask = 7
+texture_normal = SubResource("AtlasTexture_8aow7")
+texture_pressed = SubResource("AtlasTexture_khd7k")
+texture_hover = SubResource("AtlasTexture_q066x")
+script = ExtResource("1_1alus")
+
+[connection signal="button_up" from="CanvasLayer/NewRun" to="CanvasLayer/NewRun" method="_on_button_up"]
