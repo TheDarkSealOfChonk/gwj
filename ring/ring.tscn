@@ -1,9 +1,148 @@
-[gd_scene load_steps=3 format=3 uid="uid://chtpnpktn7pnf"]
+[gd_scene load_steps=12 format=3 uid="uid://chtpnpktn7pnf"]
 
 [ext_resource type="PackedScene" uid="uid://b3totobanahjr" path="res://player/player.tscn" id="1_8cdtu"]
+[ext_resource type="Texture2D" uid="uid://c6gr6pln46jh8" path="res://ring/download.jpeg" id="1_qi1gu"]
 [ext_resource type="PackedScene" uid="uid://by3sif1rqere" path="res://target/target.tscn" id="2_uyae2"]
+[ext_resource type="Shader" path="res://ring/shockwave.gdshader" id="4_f8jaw"]
+[ext_resource type="Script" path="res://ring/Shockwave.gd" id="4_wcgms"]
+[ext_resource type="Script" path="res://ring/button.gd" id="6_tjk33"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_agk32"]
+shader = ExtResource("4_f8jaw")
+shader_parameter/force = -0.635
+shader_parameter/center = Vector2(-0.5, 0.5)
+shader_parameter/size = 0.0
+shader_parameter/thikness = 0.025
+
+[sub_resource type="Animation" id="Animation_p5okq"]
+resource_name = "Shockwave"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/force")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:material:shader_parameter/thikness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_15syf"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/force")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.635, 0.085, 0.04]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.23]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:material:shader_parameter/thikness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.025, 0.525, 0.285]
+}
+
+[sub_resource type="Animation" id="Animation_5pqjh"]
+resource_name = "spawn_shockwave"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/force")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.085, 0.04]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.23]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:material:shader_parameter/thikness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.025, 0.525, 0.285]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hc8um"]
+_data = {
+"RESET": SubResource("Animation_15syf"),
+"Shockwave": SubResource("Animation_p5okq"),
+"spawn_shockwave": SubResource("Animation_5pqjh")
+}
 
 [node name="Game" type="Node2D"]
+
+[node name="Download" type="Sprite2D" parent="."]
+position = Vector2(-1.33514e-05, -3.43751)
+scale = Vector2(1.28, 0.751667)
+texture = ExtResource("1_qi1gu")
 
 [node name="Player" parent="." instance=ExtResource("1_8cdtu")]
 
@@ -12,3 +151,31 @@ position = Vector2(-88, 48)
 
 [node name="Target2" parent="." instance=ExtResource("2_uyae2")]
 position = Vector2(-16, 48)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(0.99, 0.99)
+transform = Transform2D(0.99, 0, 0, 0.99, 0, 0)
+script = ExtResource("4_wcgms")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_agk32")
+anchors_preset = -1
+anchor_right = 1.01
+anchor_bottom = 1.011
+offset_right = 0.47998
+offset_bottom = -0.128052
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_hc8um")
+}
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "spawn_shockwave"
+script = ExtResource("6_tjk33")
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
